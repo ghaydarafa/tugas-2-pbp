@@ -1,4 +1,4 @@
-## [Click here for katalog app](https://tugas-2-pbp-rafa.herokuapp.com/katalog/) or go to https://tugas-2-pbp-rafa.herokuapp.com/katalog/
+Katalog App: https://tugas-2-pbp-rafa.herokuapp.com/katalog/
 ---
 
 ### Bagan _request client_ ke web aplikasi berbasis Django  
