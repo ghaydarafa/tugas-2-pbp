@@ -24,11 +24,13 @@ berdasarkan idnya. Saya juga melakukan migrate dan loaddata. Kemudian saya membu
 untuk loaddata bagi heroku di procfiles, serta merubah value dari STATICFILES_STORAGE pada settings.py agar testing tidak meminta style css.
 Ketika saya melakukan push ke github maka aplikasi akan ter-deploy secara otomatis pada link heroku Tugas 2 sebelumnya karena saya menggunakan repositori yang sama.
 
-### POSTMAN
+### POSTMAN  
 * HTML  
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/85816679/191782214-181a7ace-d34d-46d1-b483-60de40ae16c6.png">  
+
 * XML  
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/85816679/191782412-e8229290-a412-4d3b-80ee-680e46bdfae9.png">  
+
 * JSON
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/85816679/191782503-0726d008-f681-43ff-9fd4-bb8a52ccac0f.png">  
 
