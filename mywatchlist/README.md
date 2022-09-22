@@ -1,4 +1,7 @@
 mywatchlist App: https://tugas-2-pbp-rafa.herokuapp.com/mywatchlist/
+html: https://tugas-2-pbp-rafa.herokuapp.com/mywatchlist/html
+xml: https://tugas-2-pbp-rafa.herokuapp.com/mywatchlist/xml
+json: https://tugas-2-pbp-rafa.herokuapp.com/mywatchlist/json
 --
 
 ### Perbedaan JSON, XML, dan HTML
