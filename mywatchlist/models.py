@@ -6,4 +6,4 @@ class MyWatchList(models.Model):
     title = models.CharField(max_length=255)
     rating = models.IntegerField(null=True, blank=True, default=None)
     release_date = models.DateField(auto_now=False, auto_now_add=False)
-    review = models.TextField(null=True, blank=True)
+    review = models.TextField(null=True, blank=True, default="-")

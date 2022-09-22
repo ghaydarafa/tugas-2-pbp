@@ -7,7 +7,7 @@ from django.shortcuts import render
 def show_watchlist(request):
     data_movie = MyWatchList.objects.all()
     context = {
-        'item_list': data_movie,
+        'movie_list': data_movie,
         'name': 'Ghayda Rafa Hernawan',
         'student_id': '2106634332'
     }
