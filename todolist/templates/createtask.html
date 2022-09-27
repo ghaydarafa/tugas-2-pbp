@@ -1,0 +1,42 @@
+{% comment %} Template from:
+https://www.geeksforgeeks.org/render-django-form-fields-manually/ {% endcomment %}
+
+<html>
+  
+<head>
+    <h1>CREATE TASK</h1>
+    <link 
+     rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        h1 {
+            margin: auto;
+            padding-top: 6%;
+            text-align: center;
+        }
+        .i-am-centered {
+            margin: auto;
+            max-width: 300px;
+            padding-top: 50;
+        }
+    </style>
+</head>
+  
+<body>
+    <div class="i-am-centered">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Task Title </label>
+                {{ form.title }}
+            </div>
+            <div class="form-group">
+                <label>Task Description </label>
+                {{ form.description }}
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</body>
+  
+</html>

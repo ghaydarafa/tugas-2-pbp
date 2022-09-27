@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+
+<h3 style="color:gray;">Tugas 4 PBP</h3>
+
+{% endblock meta %}
+
+{% block content %}
+
+<h4>Username: {{ username }}</h4>
+
+<style>
+    table {
+        border-collapse: collapse;
+        widht: 100%%
+      }
+    th {
+        height: 70px;
+        border-bottom: 1px solid #ddd;
+    }
+</style>
+
+<table>
+    <tr>
+    <th>Date Created</th>
+    <th>Title</th>
+    <th>Description</th>
+    </tr>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for data in data_task %}
+        <tr>
+            <th>{{data.date}}</th>
+            <th>{{data.title}}</th>
+            <th>{{data.description}}</th>
+        </tr>
+    {% endfor %}
+</table>
+
+<form action="create-task/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Create New Task">
+</form>
+
+<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+
+{% endblock content %}
