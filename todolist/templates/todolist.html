@@ -2,24 +2,43 @@
 
 {% block meta %}
 
-<h3 style="color:gray;">Tugas 4 PBP</h3>
+<h3>Tugas 4 PBP</h3>
+<h4>Username: {{ username }}</h4>
 
 {% endblock meta %}
 
 {% block content %}
 
-<h4>Username: {{ username }}</h4>
-
 <style>
+    h3 {
+        color: grey
+        position:absolute;
+        left: -80px;
+        top:2px;
+    }
+    body {
+        text-align: center;
+    }
     table {
+        table-layout: fixed;
+        width: 100%;
         border-collapse: collapse;
-        widht: 100%%
-      }
+    }
     th {
-        height: 70px;
+        background-color: #333;
+        color: white;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        height: 50px;
+        
+    }
+    td {
+        height: 50px;
         border-bottom: 1px solid #ddd;
     }
 </style>
+
+<h3 style="position:sticky-top">TASK</h3>
 
 <table>
     <tr>
@@ -30,9 +49,9 @@
     {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
     {% for data in data_task %}
         <tr>
-            <th>{{data.date}}</th>
-            <th>{{data.title}}</th>
-            <th>{{data.description}}</th>
+            <td>{{data.date}}</td>
+            <td>{{data.title}}</td>
+            <td>{{data.description}}</td>
         </tr>
     {% endfor %}
 </table>
@@ -40,9 +59,16 @@
 <form action="create-task/" method="post">
     {% csrf_token %}
     {{ form }}
-    <input type="submit" value="Create New Task">
+    <input style="background-color:#D2DAFF; border: none; padding: 15px 32px;
+    text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px"
+    onmouseover="this.style.backgroundColor='#AAC4FF';" onmouseout="this.style.backgroundColor='#D2DAFF';" 
+    type="submit" value="Create New Task">
 </form>
 
-<button><a href="{% url 'todolist:logout' %}">Logout</a></button>
+<button style="background-color:#B7C4CF; border: none; padding: 15px 32px;
+    text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px"
+    onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#B7C4CF';">
+    <a href="{% url 'todolist:logout' %}">Logout</a>
+</button>
 
 {% endblock content %}
