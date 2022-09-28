@@ -45,6 +45,9 @@
     <th>Date Created</th>
     <th>Title</th>
     <th>Description</th>
+    <th>Done Status</th>
+    <th>Checklist</th>
+    <th>Delete</th>
     </tr>
     {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
     {% for data in data_task %}
@@ -52,6 +55,25 @@
             <td>{{data.date}}</td>
             <td>{{data.title}}</td>
             <td>{{data.description}}</td>
+            <td>{{data.is_finished}}</td>
+            {% if data.is_finished %}
+                <td> <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
+                    <input style="font-weight:bold; background-color:#FFD24C; border: none; padding: 10px 24px;
+                    text-decoration: none; display: inline-block; cursor: pointer;"
+                    onmouseover="this.style.backgroundColor='#FFC300';" onmouseout="this.style.backgroundColor='#FFD24C';"
+                    type="submit" value="Undone"> </form> </td>
+            {% else %}
+                <td> <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
+                    <input style="font-weight:bold; background-color:#84DFFF; border: none; padding: 10px 24px;
+                    text-decoration: none; display: inline-block; cursor: pointer;"
+                    onmouseover="this.style.backgroundColor='#92B4EC';" onmouseout="this.style.backgroundColor='#84DFFF';"
+                    type="submit" value="Done"> </form> </td>
+            {% endif %}
+            <td> <form action="delete-task/{{data.id}}/" method = "post">{% csrf_token %}
+                 <input style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
+                 text-decoration: none; display: inline-block; cursor: pointer;"
+                 onmouseover="this.style.backgroundColor='#E14D2A';" onmouseout="this.style.backgroundColor='#F96666';"
+                 type="submit" value="Delete"> </form> </td>
         </tr>
     {% endfor %}
 </table>
@@ -65,10 +87,13 @@
     type="submit" value="Create New Task">
 </form>
 
-<button style="background-color:#B7C4CF; border: none; padding: 15px 32px;
+<form action="logout/" method="post"> {% csrf_token %}
+    <input style="background-color:#B7C4CF; border: none; padding: 15px 32px;
     text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px"
-    onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#B7C4CF';">
-    <a href="{% url 'todolist:logout' %}">Logout</a>
-</button>
+    onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#B7C4CF';"
+    type="submit" value="Logout">
+</form>
 
 {% endblock content %}
+
+{% comment %} <a href="{% url 'todolist:logout' %}">Logout</a> {% endcomment %}

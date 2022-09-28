@@ -4,7 +4,14 @@
 <title>Registrasi Akun</title>
 {% endblock meta %}
 
+
 {% block content %}  
+
+<style>
+    body {
+        text-align: center;
+    }
+</style>
 
 <div class = "login">
     
@@ -12,11 +19,23 @@
 
         <form method="POST" >  
             {% csrf_token %}  
-            <table>  
+            <table style="margin: auto;
+                        max-width: 300px;
+                        padding-top: 50;">  
                 {{ form.as_table }}  
-                <tr>  
+                <tr style="border: none;
+                border: 2px solid #D1D1D4;
+                background: none;
+                padding: 10px;
+                padding-left: 24px;
+                font-weight: 100;
+                width: 75%;
+                transition: .2s;">  
                     <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
+                    <td><input style="background-color:#B7C4CF; border: none; padding: 15px 32px;
+                        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px"
+                        onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#B7C4CF';"
+                        type="submit" name="submit" value="Daftar"/></td> 
                 </tr>  
             </table>  
         </form>
@@ -24,7 +43,7 @@
     {% if messages %}  
         <ul>   
             {% for message in messages %}  
-                <li>{{ message }}</li>  
+                <li >{{ message }}</li>  
                 {% endfor %}  
         </ul>   
     {% endif %}

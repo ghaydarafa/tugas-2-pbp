@@ -6,26 +6,53 @@
 
 {% block content %}
 
+<style>
+    body {
+        text-align: center;
+    }
+</style>
+
 <div class = "login">
 
-    <h1>Login</h1>
+    <h1 style="text-align:center">Login</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
-        <table>
+        <table style="margin: auto;
+                    max-width: 300px;
+                    padding-top: 50;">
             <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                <td style="font-weight:bold">Username: </td>
+                <td><input style="border: none;
+                    border: 2px solid #D1D1D4;
+                    background: none;
+                    padding: 10px;
+                    padding-left: 24px;
+                    font-weight: 100;
+                    width: 75%;
+                    transition: .2s;"
+                    type="text" name="username" placeholder="Username" class="form-control"></td>
             </tr>
                     
             <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                <td style="font-weight:bold">Password: </td>
+                <td><input style="border: none;
+                    border: 2px solid #D1D1D4;
+                    background: none;
+                    padding: 10px;
+                    padding-left: 24px;
+                    font-weight: 100;
+                    width: 75%;
+                    transition: .2s;"
+                    type="password" name="password" placeholder="Password" class="form-control"></td>
             </tr>
 
             <tr>
                 <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
+                <td><input style="background-color:#ABD9FF; border: none; font-weight:bold; padding: 14px 26px;
+                    text-decoration: none; display: inline-block; cursor: pointer; margin-top: 10px; margin-bottom: 10px;"
+                    onmouseover="this.style.backgroundColor='#3B9AE1';" onmouseout="this.style.backgroundColor='#ABD9FF';"
+                    class="btn login_btn" type="submit" value="Login"></td>
             </tr>
         </table>
     </form>
