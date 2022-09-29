@@ -55,14 +55,15 @@
             <td>{{data.date}}</td>
             <td>{{data.title}}</td>
             <td>{{data.description}}</td>
-            <td>{{data.is_finished}}</td>
             {% if data.is_finished %}
+                <td>Selesai</td>
                 <td> <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
                     <input style="font-weight:bold; background-color:#FFD24C; border: none; padding: 10px 24px;
                     text-decoration: none; display: inline-block; cursor: pointer;"
                     onmouseover="this.style.backgroundColor='#FFC300';" onmouseout="this.style.backgroundColor='#FFD24C';"
                     type="submit" value="Undone"> </form> </td>
             {% else %}
+                <td>Belum Selesai</td>
                 <td> <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
                     <input style="font-weight:bold; background-color:#84DFFF; border: none; padding: 10px 24px;
                     text-decoration: none; display: inline-block; cursor: pointer;"
