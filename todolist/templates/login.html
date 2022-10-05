@@ -1,72 +1,108 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html lang="en">
+    
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  </head>
+  
+  <body>
 
-{% block meta %}
-<title>Login</title>
-{% endblock meta %}
+    <div class="container py-5">
+        <div class = "login">
 
-{% block content %}
+            <h1 class="fw-bold mb-2 text-uppercase">LOGIN</h1>
+        
+            <form method="POST" action="">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                    </tr>
+                            
+                    <tr>
+                        <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                    </tr>
+        
+                    <tr>
+                        <td><input class="login_btn" type="submit" value="Login"></td>
+                    </tr>
+                </table>
+            </form>  
+                
+            <p> Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a> </p>
+            
+            {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+            {% endif %}   
+            
+        </div>
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+  
+    </body>
+
+</html>
 
 <style>
     body {
+        background-color: #FFD6EC;
         text-align: center;
     }
+    .container {
+        background-color: white;
+        align-items: center;
+        margin-top: 5%;
+        width: 50%;
+        height: 60%;
+        padding: 10px;
+        border-radius: 25px;
+        display: block;
+    }
+    .login {
+        text-align: center;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+    }
+    tr {
+        height: 50px;
+    }
+    .login_btn {
+        margin-top: 25px;
+        background-color: #FF74B1;
+        border: 2px solid #FF74B1;
+        padding: 9px 22px;
+        text-align: center;
+        border-radius: 12px;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 400;
+        color: black;
+    }
+    .login_btn:hover {
+        background-color: white;
+    }
+    p {
+        margin-top: 28px;
+        font-weight: 450;
+    }
+    a {
+        font-weight: bold;
+        color: gray;
+    }
+    .alert {
+        display: inline-block;
+        margin: 0;
+    }
 </style>
-
-<div class = "login">
-
-    <h1 style="text-align:center">Login</h1>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table style="margin: auto;
-                    max-width: 300px;
-                    padding-top: 50;">
-            <tr>
-                <td style="font-weight:bold">Username: </td>
-                <td><input style="border: none;
-                    border: 2px solid #D1D1D4;
-                    background: none;
-                    padding: 10px;
-                    padding-left: 24px;
-                    font-weight: 100;
-                    width: 75%;
-                    transition: .2s;"
-                    type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td style="font-weight:bold">Password: </td>
-                <td><input style="border: none;
-                    border: 2px solid #D1D1D4;
-                    background: none;
-                    padding: 10px;
-                    padding-left: 24px;
-                    font-weight: 100;
-                    width: 75%;
-                    transition: .2s;"
-                    type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input style="background-color:#ABD9FF; border: none; font-weight:bold; padding: 14px 26px;
-                    text-decoration: none; display: inline-block; cursor: pointer; margin-top: 10px; margin-bottom: 10px;"
-                    onmouseover="this.style.backgroundColor='#3B9AE1';" onmouseout="this.style.backgroundColor='#ABD9FF';"
-                    class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat Akun</a>
-
-</div>
-
-{% endblock content %}

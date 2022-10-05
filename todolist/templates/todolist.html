@@ -1,94 +1,120 @@
-{% extends 'base.html' %}
+<!doctype html>
+<html lang="en">
+    
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Todolist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+  
+</head>
+  
+<body>
+    <h5>Tugas 4 PBP</h5>
+    <h4>Username: {{ username }}</h4>
 
-{% block meta %}
-
-<h3>Tugas 4 PBP</h3>
-<h4>Username: {{ username }}</h4>
-
-{% endblock meta %}
-
-{% block content %}
-
-<style>
-    body {
-        text-align: center;
-    }
-    table {
-        table-layout: fixed;
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th {
-        background-color: #333;
-        color: white;
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        height: 50px;
+    <style>
+        body {
+            text-align: center;
+            align-items: center;
+            background-image: linear-gradient(to right, #C9D6FF , #E2E2E2);   
+        }
+        .card {
+            will-change: transform;
+            transition: transform 450ms;
+        }
+        .card:hover {
+            transition: transform 150ms;
+            transform: translateY(-10px);
+            shadow: 5px 5px;
+        }
         
-    }
-    td {
-        height: 50px;
-        border-bottom: 1px solid #ddd;
-    }
-</style>
+    </style>
 
-<h3 style="position:sticky-top">TASK</h3>
+    <h3 style="position: sticky-top">TASK</h3>
 
-<table>
-    <tr>
-    <th>Date Created</th>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Done Status</th>
-    <th>Checklist</th>
-    <th>Delete</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for data in data_task %}
-        <tr>
-            <td>{{data.date}}</td>
-            <td>{{data.title}}</td>
-            <td>{{data.description}}</td>
-            {% if data.is_finished %}
-                <td>Selesai</td>
-                <td> <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
-                    <input style="font-weight:bold; background-color:#FFD24C; border: none; padding: 10px 24px;
-                    text-decoration: none; display: inline-block; cursor: pointer;"
-                    onmouseover="this.style.backgroundColor='#FFC300';" onmouseout="this.style.backgroundColor='#FFD24C';"
-                    type="submit" value="Undone"> </form> </td>
-            {% else %}
-                <td>Belum Selesai</td>
-                <td> <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
-                    <input style="font-weight:bold; background-color:#84DFFF; border: none; padding: 10px 24px;
-                    text-decoration: none; display: inline-block; cursor: pointer;"
-                    onmouseover="this.style.backgroundColor='#92B4EC';" onmouseout="this.style.backgroundColor='#84DFFF';"
-                    type="submit" value="Done"> </form> </td>
-            {% endif %}
-            <td> <form action="delete-task/{{data.id}}/" method = "post">{% csrf_token %}
-                 <input style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
-                 text-decoration: none; display: inline-block; cursor: pointer;"
-                 onmouseover="this.style.backgroundColor='#E14D2A';" onmouseout="this.style.backgroundColor='#F96666';"
-                 type="submit" value="Delete"> </form> </td>
-        </tr>
-    {% endfor %}
-</table>
+    <div class="container-xl">
+        <div class="row g-2 m-auto">
+            {% for data in data_task %}
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{data.title}}</h5>
+                            <p class="card-text">{{data.description}}</p>
+                            {% if data.is_finished %}
+                                <p class="status">Status: Selesai</p>
+                                <div class="container-sm">
+                                    <div class="row">
+                                        <div class="col">
+                                            <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
+                                                <input style="font-weight:bold; background-color:#FFD24C; border: none; padding: 10px 24px;
+                                                text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
+                                                onmouseover="this.style.backgroundColor='#FFC300';" onmouseout="this.style.backgroundColor='#FFD24C';"
+                                                type="submit" value="Undone">
+                                            </form>
+                                        </div>
+                                        <div class="col">
+                                            <form action="delete-task/{{data.id}}/" method = "post">{% csrf_token %}
+                                                <input style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
+                                                text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
+                                                onmouseover="this.style.backgroundColor='#E14D2A';" onmouseout="this.style.backgroundColor='#F96666';"
+                                                type="submit" value="Delete">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            {% else %}
+                                <p class="status">Status: Belum selesai</p>
+                                <div class="container-sm">
+                                    <div class="row">
+                                        <div class="col">
+                                            <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
+                                                <input style="font-weight:bold; background-color:#84DFFF; border: none; padding: 10px 24px;
+                                                text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
+                                                onmouseover="this.style.backgroundColor='#92B4EC';" onmouseout="this.style.backgroundColor='#84DFFF';"
+                                                type="submit" value="Done">
+                                            </form>
+                                        </div>
+                                        <div class="col">
+                                            <form action="delete-task/{{data.id}}/" method = "post">{% csrf_token %}
+                                                <input style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
+                                                text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
+                                                onmouseover="this.style.backgroundColor='#E14D2A';" onmouseout="this.style.backgroundColor='#F96666';"
+                                                type="submit" value="Delete">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            {% endif %}
+                            
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Created at {{data.date}}</small>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+  
 
-<form action="create-task/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input style="background-color:#D2DAFF; border: none; padding: 15px 32px;
-    text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px"
-    onmouseover="this.style.backgroundColor='#AAC4FF';" onmouseout="this.style.backgroundColor='#D2DAFF';" 
-    type="submit" value="Create New Task">
-</form>
 
-<form action="logout/" method="post"> {% csrf_token %}
-    <input style="background-color:#B7C4CF; border: none; padding: 15px 32px;
-    text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px"
-    onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#B7C4CF';"
-    type="submit" value="Logout">
-</form>
+    <form action="create-task/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input style="background-color:#B06AB3; border: none; padding: 15px 32px;
+        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px"
+        onmouseover="this.style.backgroundColor='#4568DC';" onmouseout="this.style.backgroundColor='#B06AB3';" 
+        type="submit" value="Create New Task">
+    </form>
 
-{% endblock content %}
+    <form action="logout/" method="post"> {% csrf_token %}
+        <input style="background-color:#B7C4CF; border: none; padding: 15px 32px;
+        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px; margin-bottom: 20px;"
+        onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#B7C4CF';"
+        type="submit" value="Logout">
+    </form>
 
-{% comment %} <a href="{% url 'todolist:logout' %}">Logout</a> {% endcomment %}
+<body>
