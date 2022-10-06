@@ -13,55 +13,18 @@
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" style="margin-left: 3%;">{{ username }}</a>
-          <form method="post" action="{% url 'todolist:logout' %}">
-            {% csrf_token %}
-            <button class="logout_btn" type='submit'>Logout</button>
-          </form>
-  
+          
+            <form method="post" action="{% url 'todolist:logout' %}">
+                {% csrf_token %}
+                <button class="logout_btn" type='submit'>Logout</button>
+            </form>
+            
+          
           </div>
         </div>
       </nav>
 
-    <style>
-        body {
-            text-align: center;
-            background-image: linear-gradient(to right, #ddd6f3 , #faaca8);   
-        }
-        .card {
-            will-change: transform;
-            transition: transform 450ms;
-            height: 100%;
-        }
-        .card:hover {
-            transition: transform 150ms;
-            transform: translateY(-10px);
-            shadow: 5px 5px;
-        }
-        .navbar {
-            background: white;
-        }
-        .navbar-brand {
-            font-weight: bold;
-        }
-        .logout_btn {
-            background-color: white;
-            border: 1px solid red;
-            padding: 9px 22px;
-            text-align: center;
-            border-radius: 12px;
-            display: inline-block;
-            font-size: 16px;
-            font-weight: 400;
-            color: red;    
-        }
-        .logout_btn:hover {
-            background-color: red;
-            color: white;
-        }
-        
-    </style>
-
-    <h3>TASK</h3>
+<h1 class="fw-bold mb-2 text-uppercase" style="padding:2%;">Tasks</h1>
 
     <div class="container-xl">
         <div class="row g-2 m-auto justify-content-center">
@@ -135,10 +98,49 @@
     <form action="create-task/" method="post">
         {% csrf_token %}
         {{ form }}
-        <input style="background-color:#B06AB3; border: none; padding: 15px 32px;
+        <input style="background-color:#B06AB3; border: none; padding: 15px 32px; font-weight:bold;
         text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px; margin-bottom: 20px;"
         onmouseover="this.style.backgroundColor='#4568DC';" onmouseout="this.style.backgroundColor='#B06AB3';" 
         type="submit" value="Create New Task">
     </form>
 
 <body>
+
+    <style>
+        body {
+            text-align: center;
+            background-image: linear-gradient(to right, #ddd6f3 , #faaca8);   
+        }
+        .card {
+            will-change: transform;
+            transition: transform 450ms;
+            height: 100%;
+        }
+        .card:hover {
+            transition: transform 150ms;
+            transform: translateY(-10px);
+            shadow: 5px 5px;
+        }
+        .navbar {
+            background: white;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .logout_btn {
+            background-color: white;
+            border: 1px solid red;
+            padding: 9px 22px;
+            text-align: center;
+            border-radius: 12px;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 400;
+            color: red;    
+        }
+        .logout_btn:hover {
+            background-color: red;
+            color: white;
+        }
+        
+    </style>
