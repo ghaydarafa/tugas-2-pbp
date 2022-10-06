@@ -19,15 +19,15 @@
                 {% csrf_token %}
                 <table>
                     <tr>
-                        <td><input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username"></td>
+                        <td><input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" placeholder="Username"></td>
                     </tr>
                             
                     <tr>
-                        <td><input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"></td>
+                        <td><input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="Password"></td>
                     </tr>
 
                     <tr>
-                        <td><input type="password" name="password2" autocomplete="new-password" required="" id="id_password2"></td>
+                        <td><input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="Confirm password"></td>
                     </tr>
         
                     <tr>
@@ -82,7 +82,7 @@
     tr {
         height: 50px;
     }
-    .login_btn {
+    .register_btn {
         margin-top: 25px;
         background-color: #FF74B1;
         border: 2px solid #FF74B1;
@@ -94,7 +94,7 @@
         font-weight: 400;
         color: black;
     }
-    .login_btn:hover {
+    .register_btn:hover {
         background-color: white;
     }
     p {
