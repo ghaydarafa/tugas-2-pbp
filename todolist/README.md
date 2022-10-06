@@ -4,6 +4,7 @@ register: https://tugas-2-pbp-rafa.herokuapp.com/todolist/register
 create task: https://tugas-2-pbp-rafa.herokuapp.com/todolist/create-task  
 logout: https://tugas-2-pbp-rafa.herokuapp.com/todolist/logout  
 ---
+# Tugas 4
 
 ### Kegunaan `{% csrf_token %}` dan apa yang terjadi apabila tidak menggunakannya  
 Serangan CSRF atau serangan Cross-Site Request Forgery membuat _user_ melakukan _action_ yang tidak diinginkan
@@ -39,4 +40,46 @@ dan membuat _function_-nya pada `views.py` serta menambahkan path-nya ke url.
 8. Push ke github untuk di-deploy.
 9. Membuat dua akun pengguna dan tiga dummy data menggunakan model `Task` untuk masing-masing pada aplikasi heroku yang sudah di-deploy.
 
+  
+# Tugas 5  
+
+### Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing style?
+  * Inline Style
+    Inline style yaitu meletakkan style pada tag HTML tertentu dengan atribut `style`. Kelebihan dari cara ini yaitu dapat digunakan ketika ingin mengecek dan melihat perbedaan, berguna untuk perbaikan kecepatan, dan permintaan HTTP yang lebih kecil. Kekurangan inline style adalah kita harus menerapkannya pada setiap elemen HTML.
+  
+  * Internal CSS
+    Kode style CSS ada pada dalam file, diletakkan di dalam tag <style></style> pada bagian <head></head>. Kelebihan dari internal CSS adalah perubahan hanya terjadi di satu halaman jika ingin memiliki style halaman yang berbeda, class dan ID bisa digunakan oleh internal stylesheet, dan tidak perlu mengupload beberapa file karena HTML dan CSS berada pada file yang sama. Kekurangannya adalah intenal CSS dapat meningkatkan waktu akses website dan karena peubahan hanya terjadi pada satu halaman maka akan sulit jika diinginkan beberapa halaman memiliki style yang sama.
+  
+  * External CSS
+    External CSS dilakukan dengan menempatkan style-style pada file .CSS yang kemudian dihubungkan dengan file HTML dengan menuliskan link ke halaman tersebut. Kelebihannya ukuran file HTML lebih kecil dan lebih rapi, kecepatan loading lebih cepat, satu file .CSS bisa digunakan di beberapa halaman. Kekurangannya adalah halaman dapat tampil belum maksimal sebelum file .CSS dipanggil.
+  
+### Tag HTML5
+  Berikut beberapa tag HTML5:
+  * < a > : mendefinisikan hyperlink
+  * < body > : body dari dokumen
+  * < button > : tombol yang dapat ditekan
+  * < footer > : mendefinisikan footer dari dokumen atau suatu bagian
+  * < form > : html form untuk input dari user
+  * < hr > : garis horizontal
+  * < img > : merepresentasikan gambar
+  * < li > : list dari item-item
+  * < p > : mendefinisikan paragraf
+  * < style > : memasukkan rincian style suatu elemen
+  
+  ### Tipe-Tipe Selector
+    Berikut beberpa tipe selector:
+   * .class : pilih elemen dengan kelas tertentu
+   * element : pilih semua elemen dengan tag tertentu
+   * #id : pilih elemen dengan id tertentu
+   * :active : pilih elemen tertentu yang aktif
+   * ::after : masukkan sesuatu di setelah masing-masing elemen tertentu
+   * ::before : masukkan sesuatu di sebelum masing-masing elemen tertentu
+   * :disabled : pilih elemen tertentu yang di-non-aktifkan
+   * :enabled : pilih elemen tertentu yang diaktifkan
+   * :focus : pilih input elemen yang memiliki fokus
+   * :link : pilih link yang belum dikunjungi
+ 
+  ### Cara pengimplementasian checklist
+  Saya melakukan searching melalui internet untuk mendesain halaman html sesuai yang saya inginkan. Saya menggunakan bootstrap dan internal serta inline style untuk styling CSS. Saya menyesuaikan tag untuk membuat elemen yang saya inginkan. Saya juga menggunakan beberapa selector. Selector yang banyak saya gunakan adalah element dan .class.
+    
   
