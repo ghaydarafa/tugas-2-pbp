@@ -67,7 +67,7 @@ dan membuat _function_-nya pada `views.py` serta menambahkan path-nya ke url.
   * < style > : memasukkan rincian style suatu elemen
   
   ### Tipe-Tipe Selector
-    Berikut beberpa tipe selector:
+   Berikut beberpa tipe selector:
    * .class : pilih elemen dengan kelas tertentu
    * element : pilih semua elemen dengan tag tertentu
    * #id : pilih elemen dengan id tertentu
