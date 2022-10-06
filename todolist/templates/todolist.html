@@ -10,13 +10,22 @@
 </head>
   
 <body>
-    <h5>Tugas 4 PBP</h5>
-    <h4>Username: {{ username }}</h4>
+    <nav class="navbar sticky-top navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" style="margin-left: 3%;">{{ username }}</a>
+          <form method="post" action="{% url 'todolist:logout' %}">
+            {% csrf_token %}
+            <button class="logout_btn" type='submit'>Logout</button>
+          </form>
+  
+          </div>
+        </div>
+      </nav>
 
     <style>
         body {
             text-align: center;
-            background-image: linear-gradient(to right, #C9D6FF , #E2E2E2);   
+            background-image: linear-gradient(to right, #ddd6f3 , #faaca8);   
         }
         .card {
             will-change: transform;
@@ -28,10 +37,31 @@
             transform: translateY(-10px);
             shadow: 5px 5px;
         }
+        .navbar {
+            background: white;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .logout_btn {
+            background-color: white;
+            border: 1px solid red;
+            padding: 9px 22px;
+            text-align: center;
+            border-radius: 12px;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: 400;
+            color: red;    
+        }
+        .logout_btn:hover {
+            background-color: red;
+            color: white;
+        }
         
     </style>
 
-    <h3 style="position: sticky-top">TASK</h3>
+    <h3>TASK</h3>
 
     <div class="container-xl">
         <div class="row g-2 m-auto justify-content-center">
@@ -67,7 +97,7 @@
                                 
                             {% else %}
                                 <p class="status" style="color:#8e9295;" >Belum selesai</p>
-                                <div class="container-sm">
+                                <div class="container-sm" id="button">
                                     <div class="row">
                                         <div class="col">
                                             <form action="check-task/{{data.id}}/" method = "post">{% csrf_token %}
@@ -106,16 +136,9 @@
         {% csrf_token %}
         {{ form }}
         <input style="background-color:#B06AB3; border: none; padding: 15px 32px;
-        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px"
+        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px; margin-bottom: 20px;"
         onmouseover="this.style.backgroundColor='#4568DC';" onmouseout="this.style.backgroundColor='#B06AB3';" 
         type="submit" value="Create New Task">
-    </form>
-
-    <form action="logout/" method="post"> {% csrf_token %}
-        <input style="background-color:#9fa4a8; border: none; padding: 15px 32px;
-        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px; margin-bottom: 20px;"
-        onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#9fa4a8';"
-        type="submit" value="Logout">
     </form>
 
 <body>
