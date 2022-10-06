@@ -81,5 +81,9 @@ dan membuat _function_-nya pada `views.py` serta menambahkan path-nya ke url.
  
   ### Cara pengimplementasian checklist
   Saya melakukan searching melalui internet untuk mendesain halaman html sesuai yang saya inginkan. Saya menggunakan bootstrap dan internal serta inline style untuk styling CSS. Saya menyesuaikan tag untuk membuat elemen yang saya inginkan. Saya juga menggunakan beberapa selector. Selector yang banyak saya gunakan adalah element dan .class.
-    
+  
+#### Referensi
+  * https://www.w3schools.com/cssref/css_selectors.asp
+  * https://www.hostinger.co.id/tutorial/perbedaan-inline-css-external-css-dan-internal-css
+  * https://www.hostinger.co.id/tutorial/perbedaan-inline-css-external-css-dan-internal-css
   
