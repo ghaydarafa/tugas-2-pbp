@@ -1,74 +1,112 @@
 <!doctype html>
 <html lang="en">
-
+    
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registrasi Akun</title>
+    <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   </head>
-
+  
   <body>
-    <div class="container py-5">
-        <div class = "login">
-    
-            <h1 style="margin-bottom: 3%;">Formulir Registrasi</h1>  
+
+    <div class="container-sm">
+        <div class = "register">
+
+            <h1 class="fw-bold mb-2 text-uppercase">Register</h1>
         
-                <form method="POST" >  
-                    {% csrf_token %}  
-                    <table>  
-                        {{ form.as_table }}  
-                        <tr>  
-                            <td></td>
-                            <td><input style="margin-top: 25px;
-                                background-color: #A7D2CB;
-                                border: 2px solid #A7D2CB;
-                                padding: 9px 22px;
-                                text-align: center;
-                                border-radius: 12px;
-                                display: inline-block;
-                                font-size: 16px;
-                                font-weight: 400;
-                                color: black;"
-                                onmouseover="this.style.backgroundColor='white'"
-                                onmouseout="this.style.backgroundColor= '#A7D2CB';" type="submit" name="submit" value="Daftar"/></td>  
-                        </tr>  
-                    </table>  
-                </form>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td><input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username"></td>
+                    </tr>
+                            
+                    <tr>
+                        <td><input type="password" name="password1" autocomplete="new-password" required="" id="id_password1"></td>
+                    </tr>
+
+                    <tr>
+                        <td><input type="password" name="password2" autocomplete="new-password" required="" id="id_password2"></td>
+                    </tr>
         
-            {% if messages %}  
-                <ul>   
-                    {% for message in messages %}  
-                        <li>{{ message }}</li>  
-                        {% endfor %}  
-                </ul>   
-            {% endif %}
-        
-        </div>  
+                    <tr>
+                        <td><input class="register_btn" type="submit" name="submit" value="Register"></td>
+                    </tr>
+                </table>
+            </form>  
+                
+            <p> Sudah mempunyai akun? <a href="{% url 'todolist:login' %}">Login</a> </p>
+            
+            {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                      </div>
+                    {% endfor %}
+            {% endif %}   
+            
+        </div>
         
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-  </body>
+  
+    </body>
 
 </html>
 
 <style>
-    body{
-        background-color: #A1C298;
+    body {
+        background-color: #FFD6EC;
         text-align: center;
     }
-    .container {
+    .container-sm {
         background-color: white;
         align-items: center;
-        margin-top: 3%;
-        width: 50%;
+        margin-top: 5%;
+        width: 40%;
         height: 60%;
         padding: 10px;
         border-radius: 25px;
         display: block;
     }
+    .register {
+        text-align: center;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+    }
     tr {
         height: 50px;
+    }
+    .login_btn {
+        margin-top: 25px;
+        background-color: #FF74B1;
+        border: 2px solid #FF74B1;
+        padding: 9px 22px;
+        text-align: center;
+        border-radius: 12px;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 400;
+        color: black;
+    }
+    .login_btn:hover {
+        background-color: white;
+    }
+    p {
+        margin-top: 28px;
+        font-weight: 450;
+    }
+    a {
+        font-weight: bold;
+        color: gray;
+    }
+    .alert {
+        display: inline-block;
+        margin: 0;
     }
 </style>

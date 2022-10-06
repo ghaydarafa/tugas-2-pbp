@@ -16,12 +16,12 @@
     <style>
         body {
             text-align: center;
-            align-items: center;
             background-image: linear-gradient(to right, #C9D6FF , #E2E2E2);   
         }
         .card {
             will-change: transform;
             transition: transform 450ms;
+            height: 100%;
         }
         .card:hover {
             transition: transform 150ms;
@@ -34,15 +34,16 @@
     <h3 style="position: sticky-top">TASK</h3>
 
     <div class="container-xl">
-        <div class="row g-2 m-auto">
+        <div class="row g-2 m-auto justify-content-center">
             {% for data in data_task %}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">{{data.title}}</h5>
                             <p class="card-text">{{data.description}}</p>
+                            <hr class="line-status">
                             {% if data.is_finished %}
-                                <p class="status">Status: Selesai</p>
+                                <p class="status" style="color:#8e9295;">Selesai</p>
                                 <div class="container-sm">
                                     <div class="row">
                                         <div class="col">
@@ -65,7 +66,7 @@
                                 </div>
                                 
                             {% else %}
-                                <p class="status">Status: Belum selesai</p>
+                                <p class="status" style="color:#8e9295;" >Belum selesai</p>
                                 <div class="container-sm">
                                     <div class="row">
                                         <div class="col">
@@ -111,9 +112,9 @@
     </form>
 
     <form action="logout/" method="post"> {% csrf_token %}
-        <input style="background-color:#B7C4CF; border: none; padding: 15px 32px;
+        <input style="background-color:#9fa4a8; border: none; padding: 15px 32px;
         text-decoration: none; display: inline-block; cursor: pointer; margin-top: 20px; margin-bottom: 20px;"
-        onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#B7C4CF';"
+        onmouseover="this.style.backgroundColor='#CFD2CF';" onmouseout="this.style.backgroundColor='#9fa4a8';"
         type="submit" value="Logout">
     </form>
 
