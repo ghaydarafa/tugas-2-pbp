@@ -19,12 +19,42 @@
     <nav class="navbar sticky-top navbar-expand-lg">
         <div class="container-fluid">
           <a class="navbar-brand" style="margin-left: 3%;">{{ username }}</a>
-          
+
+          <div class="my-2 my-lg-0">
+            <!-- Modal Add Task -->
+            <button id="add-task-button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">+ Add task</button>
+                
+            <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                        <input type="text" class="form-control" id="task_title" name="title" placeholder="Task title">
+                        </div>
+                        <div class="mb-3">
+                        <input type="text" class="form-control" id="task_description" name="description" placeholder="Task description">
+                        </div>
+                    
+                        </div>
+                        <div class="modal-footer">
+                        <button id="button" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+                        </div>
+                </div>
+                </div>
+            </div>
+
             <form method="post" action="{% url 'todolist:logout' %}">
                 {% csrf_token %}
                 <button class="logout_btn" type='submit'>Logout</button>
             </form>
             
+          </div>
           
           </div>
         </div>
@@ -32,33 +62,7 @@
 
 <h1 class="fw-bold mb-2 text-uppercase" style="padding:2%;">Tasks</h1>
 
-<!-- Modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">Add task</button>
-    
-    <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Task</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <form id="form" onsubmit="return false;">
-                {% csrf_token %}
-                <div class="mb-3">
-                <input type="text" class="form-control" id="task_title" name="title" placeholder="Task title">
-                </div>
-                <div class="mb-3">
-                <input type="text" class="form-control" id="task_description" name="description" placeholder="Task description">
-                </div>
-            
-                </div>
-                <div class="modal-footer">
-                <button id="button" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
-                </div>
-        </div>
-        </div>
-    </div>
+
 
     <div class="container-xl">
         <div class="row g-2 m-auto justify-content-center" id="row">
@@ -235,6 +239,9 @@
         .navbar {
             background: white;
         }
+        .modal-backdrop {
+            display: none;
+        }
         .navbar-brand {
             font-weight: bold;
         }
@@ -252,6 +259,21 @@
         .logout_btn:hover {
             background-color: red;
             color: white;
+        }
+        #add-task-button {
+            padding: 9px 9px;
+            text-align: center;
+            height: 6%;
+            margin-bottom: 1.8%;
+            border-radius: 12px;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+            color: white; 
+        }
+        #add-task-button:hover {
+            background-color: white;
+            color: blue;
         }
         
     </style>
