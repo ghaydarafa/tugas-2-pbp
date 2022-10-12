@@ -46,15 +46,15 @@
             <form id="form" onsubmit="return false;">
                 {% csrf_token %}
                 <div class="mb-3">
-                <input type="text" class="form-control" id="task_title" name="title" placeholder="Task title">
+                <input type="text" name="title" class="form-control" id="task_title" placeholder="Task title">
                 </div>
                 <div class="mb-3">
-                <input type="text" class="form-control" id="task_description" name="description" placeholder="Task description">
+                <input type="text" name="description" class="form-control" id="task_description" placeholder="Task description">
                 </div>
             
                 </div>
                 <div class="modal-footer">
-                <button id="button" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+                <button id="buttonAdd" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
                 </div>
         </div>
         </div>
@@ -128,68 +128,13 @@
     </div>
   
     <script>
-        async function getTodolist() {
-          return fetch("{% url 'todolist:show_json' %}").then((res) => res.json())
-        }
-      
-        async function refreshTodolist() {
-              document.getElementById("row").innerHTML = ""
-              const todolist = await getTodolist()
-              let htmlString = ''
-              todolist.forEach((item) => {
-                htmlString += `\n<div class="col-12 col-md-6 col-lg-4">
-                                <div class="card">
-                                <div class="card-body">
-                                <h5 class="card-title">${item.fields.title}</h5>
-                                <p class="card-text">${item.fields.description}</p>
-                                <hr class="line-status">`
+        // async function getTodolist() {
+        //   return fetch("{% url 'todolist:show_json' %}").then((res) => res.json())
+        // }
 
-                if (item.fields.is_finished) {
-                    htmlString += `<p class="status" style="color:#8e9295;">Selesai</p>
-                                <div class="container-sm">
-                                    <div class="row">
-                                        <div class="col">
-                                            <form action="check-task/${item.pk}/" method = "post">{% csrf_token %}
-                                                <input style="font-weight:bold; background-color:#FFD24C; border: none; padding: 10px 24px;
-                                                text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
-                                                onmouseover="this.style.backgroundColor='#FFC300';" onmouseout="this.style.backgroundColor='#FFD24C';"
-                                                type="submit" value="Undone">
-                                            </form>
-                                        </div>`
-                                        
-                } else {
-                    htmlString += `<p class="status" style="color:#8e9295;" >Belum selesai</p>
-                                <div class="container-sm" id="button">
-                                    <div class="row">
-                                        <div class="col">
-                                            <form action="check-task/${item.pk}/" method = "post">{% csrf_token %}
-                                                <input style="font-weight:bold; background-color:#84DFFF; border: none; padding: 10px 24px;
-                                                text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
-                                                onmouseover="this.style.backgroundColor='#92B4EC';" onmouseout="this.style.backgroundColor='#84DFFF';"
-                                                type="submit" value="Done">
-                                            </form>
-                                        </div>`
-                }
-                htmlString += `<div class="col">
-                                            <form action="delete-task/${item.pk}/" method = "post">{% csrf_token %}
-                                                <input style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
-                                                text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
-                                                onmouseover="this.style.backgroundColor='#E14D2A';" onmouseout="this.style.backgroundColor='#F96666';"
-                                                type="submit" value="Delete">
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>
-                                <div class="card-footer">
-                                <small class="text-muted">Created at ${item.fields.date}</small>
-                                </div>
-                                </div>
-                                </div>` 
-              })
-              
-              document.getElementById("row").innerHTML = htmlString
-        }
+        $(document).ready(function(){
+            refreshTodolist();
+        });
 
         function addTodolist() {
             fetch("{% url 'todolist:add_task' %}", {
@@ -199,7 +144,85 @@
             return false
         }
 
-        document.getElementById("button").onclick = addTodolist
+        document.getElementById("buttonAdd").onclick = addTodolist
+      
+        async function refreshTodolist() {
+            //   document.getElementById("row").innerHTML = "";
+            //   const todolist = await getTodolist()
+              let htmlString = '';
+              $.ajax({
+                url: "json",
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    data.forEach((item) => {
+                        htmlString += `\n<div class="col-12 col-md-6 col-lg-4">
+                                        <div class="card">
+                                        <div class="card-body">
+                                        <h5 class="card-title">${item.fields.title}</h5>
+                                        <p class="card-text">${item.fields.description}</p>
+                                        <hr class="line-status">`;
+
+                        if (item.fields.is_finished) {
+                            htmlString += `<p class="status" style="color:#8e9295;">Selesai</p>
+                                        <div class="container-sm">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <form action="check-task/${item.fields.id}/" method = "post">{% csrf_token %}
+                                                        <input style="font-weight:bold; background-color:#FFD24C; border: none; padding: 10px 24px;
+                                                        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
+                                                        onmouseover="this.style.backgroundColor='#FFC300';" onmouseout="this.style.backgroundColor='#FFD24C';"
+                                                        type="submit" value="Undone">
+                                                    </form>
+                                                </div>
+                                                <div class="col">
+                                                    <form action="delete-task/${item.fields.id}/" method = "post">{% csrf_token %}
+                                                        <input style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
+                                                        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
+                                                        onmouseover="this.style.backgroundColor='#E14D2A';" onmouseout="this.style.backgroundColor='#F96666';"
+                                                        type="submit" value="Delete">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                        } else {
+                            htmlString += `<p class="status" style="color:#8e9295;" >Belum selesai</p>
+                                        <div class="container-sm" id="button">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <form action="check-task/${item.fields.id}/" method = "post">{% csrf_token %}
+                                                        <input style="font-weight:bold; background-color:#84DFFF; border: none; padding: 10px 24px;
+                                                        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
+                                                        onmouseover="this.style.backgroundColor='#92B4EC';" onmouseout="this.style.backgroundColor='#84DFFF';"
+                                                        type="submit" value="Done">
+                                                    </form>
+                                                </div>
+                                                <div class="col">
+                                                    <form action="delete-task/${item.fields.id}/" method = "post">{% csrf_token %}
+                                                        <input style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
+                                                        text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
+                                                        onmouseover="this.style.backgroundColor='#E14D2A';" onmouseout="this.style.backgroundColor='#F96666';"
+                                                        type="submit" value="Delete">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>`;
+                        }
+                        htmlString += `</div>
+                                        <div class="card-footer">
+                                        <small class="text-muted">Created at ${item.fields.date}</small>
+                                        </div>
+                                        </div>
+                                        </div>`;
+                        $('#row').html(htmlString);
+                    }
+                )}, error: function(data) {
+                    console.log("error");
+                }
+              })
+              
+        }
+
         refreshTodolist()
     </script>
 

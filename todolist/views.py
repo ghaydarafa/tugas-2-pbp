@@ -7,17 +7,19 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
 from .forms import CreateTaskForm
+from django.core import serializers
+from django.http import HttpResponse
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
 def show_todolist(request):
-    data = Task.objects.all().filter(user = request.user)
+    # data = Task.objects.filter(user = request.user)
     username = request.user
     context = {
-        'data_task': data,
+        # 'data_task': data,
         'username': username,
     }
     return render(request, "todolist.html", context)
@@ -88,3 +90,21 @@ def check_task(request, i):
         task.is_finished = True
     task.save()
     return HttpResponseRedirect('/todolist')
+
+@login_required(login_url='/todolist/login/')
+def show_json(request):
+    data = Task.objects.filter(user = request.user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def add_task(request):
+    if request.method == 'POST':
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_task = Task(user=user,title=title, description=description)
+        new_task.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
