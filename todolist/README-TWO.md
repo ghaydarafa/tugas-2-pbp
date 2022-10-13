@@ -16,14 +16,12 @@ Beberapa penerapan asinkronus pada AJAX di antaranya menggunakan XHR, JQuery, da
   `onerror`. Terakhir, kirim request dengan fungsi `send()`.  
 * JQuery
   Tambahkan library JQuery, kemudian edit fungsi yang diinginkan dengan menggunakan AJAX Jquery. Salah satu contohnya sebagai berikut:  
-  `function deleteTask(id) {
-            $.ajax({
-                url: `/todolist/delete/${id}`,
-                type: "DELETE",
-                success: function() {
-                    $(`#${id}`).remove();
-                }
-            }).then(refreshTodolist)
+  `function addTask() {  
+            fetch("{% url 'todolist:add_task' %}", {  
+                method: "POST",  
+                body: new FormData(document.querySelector('#form'))  
+            }).then(refreshTodolist)  
+            return false  
         }`  
  * Fetch API
    Fetch API adalah gabungan dari XHR dan JQuery. Fungsi fetch akan memanfaatkan suatu Promise. Untuk menggunakan fetch dapat memakai fungsi `fetch()` dengan
