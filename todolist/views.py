@@ -12,6 +12,7 @@ from django.urls import reverse
 from .forms import CreateTaskForm
 from django.core import serializers
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @login_required(login_url='/todolist/login/')
@@ -77,8 +78,8 @@ def create_task(request):
 
     return render(request, 'createtask.html', {'form': form})
 
-def delete_task(request, i):
-    task = Task.objects.get(id=i)
+def delete_task(request, id):
+    task = Task.objects.get(id=id)
     task.delete()
     return HttpResponseRedirect('/todolist')
 
@@ -108,3 +109,10 @@ def add_task(request):
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
+
+@csrf_exempt
+def delete_ajax(request, i):
+    if request.method == "DELETE":
+        task = Task.objects.get(id=i)
+        task.delete()
+    return HttpResponse(b"DELETE")

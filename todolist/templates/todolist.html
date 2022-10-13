@@ -66,7 +66,7 @@
 
     <div class="container-xl">
         <div class="row g-2 m-auto justify-content-center" id="row">
-            {% for data in data_task %}
+            <!-- {% for data in data_task %}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card">
                         <div class="card-body">
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                 </div>
-            {% endfor %}
+            {% endfor %} -->
         </div>
     </div>
   
@@ -175,12 +175,11 @@
                                         </div>`
                 }
                 htmlString += `<div class="col">
-                                            <form action="delete-task/${item.pk}/" method = "post">{% csrf_token %}
-                                                <input style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
+                                            <button style="font-weight:bold; background-color:#F96666; border: none; padding: 10px 24px;
                                                 text-decoration: none; display: inline-block; cursor: pointer; margin-top: 5px;"
                                                 onmouseover="this.style.backgroundColor='#E14D2A';" onmouseout="this.style.backgroundColor='#F96666';"
-                                                type="submit" value="Delete">
-                                            </form>
+                                                onclick="deleteTask(${item.pk})"> Delete
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +194,7 @@
               document.getElementById("row").innerHTML = htmlString
         }
 
-        function addTodolist() {
+        function addTask() {
             fetch("{% url 'todolist:add_task' %}", {
                 method: "POST",
                 body: new FormData(document.querySelector('#form'))
@@ -203,7 +202,17 @@
             return false
         }
 
-        document.getElementById("button").onclick = addTodolist
+        function deleteTask(id) {
+            $.ajax({
+                url: `/todolist/delete/${id}`,
+                type: "DELETE",
+                success: function() {
+                    $(`#${id}`).remove();
+                }
+            }).then(refreshTodolist)
+        }
+
+        document.getElementById("button").onclick = addTask
         refreshTodolist()
     </script>
 

@@ -1,4 +1,6 @@
 from asyncio import create_task
+
+from todolist.views import delete_ajax
 from todolist.views import add_task
 from django.urls import path
 from todolist.views import show_todolist
@@ -22,4 +24,5 @@ urlpatterns = [
     path('check-task/<int:i>/', check_task),
     path('json/', show_json, name='show_json'),
     path('add/', add_task, name='add_task'),
+    path('delete/<int:i>/', delete_ajax, name="delete_ajax"),
 ]
